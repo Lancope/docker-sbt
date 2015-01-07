@@ -5,4 +5,5 @@ RUN dpkg -i sbt-0.13.7.deb
 RUN rm sbt-0.13.7.deb
 RUN sbt
 
-RUN apt-get install -yq rsync ssh-client
+RUN apt-get install -yq rsync ssh-client openssl
+RUN apt-get clean
