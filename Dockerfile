@@ -1,8 +1,8 @@
 FROM lancope/java:8
 
-RUN wget -q --no-check-certificate https://dl.bintray.com/sbt/debian/sbt-0.13.7.deb
-RUN dpkg -i sbt-0.13.7.deb
-RUN rm sbt-0.13.7.deb
+RUN echo "deb http://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
+RUN apt-get update -o Dir::Etc::sourcelist="sources.list.d/sbt.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
+RUN apt-get install -yq --force-yes sbt
 RUN sbt
 
 RUN apt-get install -yq rsync ssh-client openssl
